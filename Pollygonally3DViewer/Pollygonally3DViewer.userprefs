@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ViewerMain.cs">
+    <Files>
+      <File FileName="Assets\Scripts\ViewerMain.cs" Line="81" Column="38" />
+      <File FileName="Assets\Scripts\SettingsManager.cs" Line="4" Column="29" />
+      <File FileName="Assets\Scripts\SelectionScene.cs" Line="40" Column="20" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
