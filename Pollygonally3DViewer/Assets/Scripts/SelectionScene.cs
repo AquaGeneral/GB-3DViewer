@@ -25,11 +25,12 @@ public class SelectionScene : MonoBehaviour {
 		GUI.Label(new Rect(30f, 205f, 100f, 30f), "Search");
 		GUI.SetNextControlName("SearchInput");
 		searchInput = GUI.TextField(new Rect(120f, 200f, 435f, 30f), searchInput, guiSkin.textField);
-		GUI.Label(new Rect(120f, 232f, 435f, 20f), "Eg: Halo, Pikmin or Mario", guiSkin.customStyles[3]);
+		GUI.Label(new Rect(120f, 232f, 435f, 20f), "Eg: Pikmin (franchise), Man (character). Platforms aren't supported yet", guiSkin.customStyles[3]);
 		
 		GUI.Label(new Rect(30f, 275f, 100f, 30f), "Search Type");
+		
 		resourceType = GUI.TextField(new Rect(120f, 270f, 435f, 30f), resourceType, guiSkin.textField);
-		GUI.Label(new Rect(120f, 302f, 435f, 20f), "Eg: game, franchise or character. No spaces, case-insensetive", guiSkin.customStyles[3]);
+		GUI.Label(new Rect(120f, 302f, 435f, 40f), "Eg: game, franchise, character, concept, object, location,\nperson, company or video. Case-insensetive", guiSkin.customStyles[3]);
 		
 		if(string.IsNullOrEmpty(searchInput) == false && searchInput.Trim().Length != 0) {
 			if(Event.current.keyCode == KeyCode.Return) {

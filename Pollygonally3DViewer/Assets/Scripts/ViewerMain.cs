@@ -20,7 +20,7 @@ public class ViewerMain : MonoBehaviour {
 	IEnumerator Start() {
 		if(SettingsManager.callURL == "") {
 			SettingsManager.callURL = "http://api.giantbomb.com/search/?api_key=d67c460606bc9f8207f30f6e16ac11ac0b2636d3" + 
-				"&format=xml&field_list=name,image&resources=game&query=Mario";
+				"&format=xml&field_list=name,image&resources=game&query=Pikmin";
 			SettingsManager.resourceType = "game";
 		}
 		
@@ -113,13 +113,13 @@ public class ViewerMain : MonoBehaviour {
 		//float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * 6f;
 		//float mouseY = -Input.GetAxis("Mouse Y") * Time.deltaTime * 6f;
 		
-		float xAxis = Input.GetAxis ("Horizontal") * Time.deltaTime * 1.75f;
+		float xAxis = Input.GetAxis ("Horizontal") * Time.deltaTime * 1.8f;
 		float yAxis = Input.GetAxis("UpDown") * Time.deltaTime * 1.5f;
 		float zAxis = Input.GetAxis("Vertical") * Time.deltaTime * 1.7f;
 		
 		//transform.Rotate(new Vector3(mouseY * 2f, mouseX * 2f, 0f));
 		transform.position = new Vector3(Mathf.Clamp(transform.position.x + xAxis, 0f, 120f), 
-			Mathf.Clamp(transform.position.y + yAxis, 0.15f, 2f), 
+			Mathf.Clamp(transform.position.y + yAxis, 0.15f, 3f), 
 			Mathf.Clamp(transform.position.z + zAxis, -0.5f, 0.5f));
 		
 		if(gameCount < gameCardBoxes.Count) {
