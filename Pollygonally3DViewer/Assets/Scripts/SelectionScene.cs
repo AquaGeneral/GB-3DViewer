@@ -8,10 +8,16 @@ public class SelectionScene : MonoBehaviour {
 	string searchInput = "";
 	string resourceType = "game";
 	
-	enum SelectionType {
-		Franchise,
-		Search,
-		UpcomingGames,
+	string[] resourceTypes = new string[] {
+		"accessories", "characters", "chats", "companies", "concepts", 
+		"franchises", "games", "Game Ratings", "genres", "locations", "objects",
+		"people", "platforms", "Promos", "Rating Boards", "regions", "releases",
+		"Reviews", "Search", "themes", "Types", "User Reviews", "videos", "video_types"};
+			
+	InGamePopup resourceTypePopup;
+	
+	void Start() {
+		resourceTypePopup = new InGamePopup(new Rect(120, 270, 250, 30), 30f, resourceTypes);	
 	}
 	
 	void OnGUI() {
@@ -29,8 +35,11 @@ public class SelectionScene : MonoBehaviour {
 		
 		GUI.Label(new Rect(30f, 275f, 100f, 30f), "Search Type");
 		
-		resourceType = GUI.TextField(new Rect(120f, 270f, 435f, 30f), resourceType, guiSkin.textField);
-		GUI.Label(new Rect(120f, 302f, 435f, 40f), "Eg: game, franchise, character, concept, object, location,\nperson, company or video. Case-insensetive", guiSkin.customStyles[3]);
+		//resourceType = GUI.TextField(new Rect(120f, 270f, 435f, 30f), resourceType, guiSkin.textField);
+		//GUI.Label(new Rect(120f, 302f, 435f, 40f), "Eg: game, franchise, character, concept, object, location,\nperson, company or video. Case-insensetive", guiSkin.customStyles[3]);
+		
+		
+		resourceTypePopup.Draw();
 		
 		if(string.IsNullOrEmpty(searchInput) == false && searchInput.Trim().Length != 0) {
 			if(Event.current.keyCode == KeyCode.Return) {
@@ -45,6 +54,8 @@ public class SelectionScene : MonoBehaviour {
 		GUI.Label(new Rect(25f, 450f, 400f, 40f), "Created by Jesse Stiller. This program is Whiskey powered.");
 		
 		GUI.EndGroup();
+		
+		
 	}
 	
 	void DrawWindow(int id) {

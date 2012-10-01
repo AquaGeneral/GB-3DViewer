@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\BoxShowText.cs" />
+     <Compile Include="Assets\Scripts\InGamePopup.cs" />
      <Compile Include="Assets\Scripts\SelectionScene.cs" />
      <Compile Include="Assets\Scripts\SettingsManager.cs" />
      <Compile Include="Assets\Scripts\ViewerMain.cs" />
