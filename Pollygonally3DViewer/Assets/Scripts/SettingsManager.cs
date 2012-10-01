@@ -9,11 +9,18 @@ public class SettingsManager : MonoBehaviour {
 	}
 	
 	public static void LoadSearch(string searchInput, string resourceType) {
-		callURL = "http://api.giantbomb.com/search/?" + 
-				"api_key=d67c460606bc9f8207f30f6e16ac11ac0b2636d3&format=xml&field_list=name,image&query=" + searchInput.Trim() + "&resources=" + resourceType;
+		if(string.IsNullOrEmpty(resourceType)) {
+			callURL = "http://api.giantbomb.com/search/?" + 
+				"api_key=d67c460606bc9f8207f30f6e16ac11ac0b2636d3&format=xml&field_list=name,image&query=" + searchInput.Trim();
+		} else {
+			callURL = "http://api.giantbomb.com/search/?" + 
+				"api_key=d67c460606bc9f8207f30f6e16ac11ac0b2636d3&format=xml&field_list=name,image&query=" + searchInput.Trim() + "&resources=" + resourceType;	
+			SettingsManager.resourceType = resourceType.ToLower();
+		}
+		
 		callURL = callURL.Replace(" ", "%20");
 		
-		SettingsManager.resourceType = resourceType.ToLower();
+		
 
 		Debug.Log ("CallURL set: " + callURL);
 		
