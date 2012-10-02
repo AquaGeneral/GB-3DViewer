@@ -6,7 +6,6 @@ public class SelectionScene : MonoBehaviour {
 	public GUISkin guiSkin;
 	
 	string searchInput = "";
-	string resourceType = "game";
 	
 	string[] resourceTypes = new string[] {
 		"accessories", "characters", "chats", "companies", "concepts", 
@@ -43,11 +42,11 @@ public class SelectionScene : MonoBehaviour {
 		
 		if(string.IsNullOrEmpty(searchInput) == false && searchInput.Trim().Length != 0) {
 			if(Event.current.keyCode == KeyCode.Return) {
-				SettingsManager.LoadSearch(searchInput, resourceType);
+				SettingsManager.LoadSearch(searchInput, resourceTypes[resourceTypePopup.selectedItem]);
 			}
 			
 			if(GUI.Button(new Rect(420f, 380f, 100f, 40f), "Search", guiSkin.button)) {
-				SettingsManager.LoadSearch(searchInput, resourceType);
+				SettingsManager.LoadSearch(searchInput, resourceTypes[resourceTypePopup.selectedItem]);
 			}
 		}
 		

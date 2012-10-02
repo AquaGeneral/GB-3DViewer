@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class SettingsManager : MonoBehaviour {
+	public const string apiKeySection = "?api_key=d67c460606bc9f8207f30f6e16ac11ac0b2636d3";
 	public static string callURL = "";
 	public static string resourceType = "";
 	void Awake() {
@@ -9,13 +10,20 @@ public class SettingsManager : MonoBehaviour {
 	}
 	
 	public static void LoadSearch(string searchInput, string resourceType) {
-		if(string.IsNullOrEmpty(resourceType)) {
-			callURL = "http://api.giantbomb.com/search/?" + 
-				"api_key=d67c460606bc9f8207f30f6e16ac11ac0b2636d3&format=xml&field_list=name,image&query=" + searchInput.Trim();
+		searchInput = searchInput.Trim();
+		
+		if(string.IsNullOrEmpty(searchInput)) {
+			callURL = "http://api.giantbomb.com/search/" + apiKeySection + "&field_list=name,image&query=pikmin";
 		} else {
-			callURL = "http://api.giantbomb.com/search/?" + 
-				"api_key=d67c460606bc9f8207f30f6e16ac11ac0b2636d3&format=xml&field_list=name,image&query=" + searchInput.Trim() + "&resources=" + resourceType;	
 			SettingsManager.resourceType = resourceType.ToLower();
+			switch(resourceType) {
+			case "game":
+				callURL = "http://api.giantbomb.com/search/" + apiKeySection + "&format=xml&field_list=name,image&query=" + searchInput + "&resources=" + resourceType;	
+				break;
+			case "platforms":
+				callURL = "http://api.giantbomb.com/platforms/" + apiKeySection + "&format=xml&field_list=name,image";
+				break;
+			}
 		}
 		
 		callURL = callURL.Replace(" ", "%20");

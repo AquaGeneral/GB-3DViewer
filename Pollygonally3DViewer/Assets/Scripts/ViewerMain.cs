@@ -47,7 +47,7 @@ public class ViewerMain : MonoBehaviour {
 		
 		XmlDocument xmlDocument = new XmlDocument();
 		xmlDocument.LoadXml(xmlText);
-		XmlNodeList nodes = xmlDocument.GetElementsByTagName(SettingsManager.resourceType);
+		XmlNodeList nodes = xmlDocument.GetElementsByTagName("platform");
 		
 		foreach(XmlNode node in nodes) {
 			XmlNode firstChild = node.FirstChild;
