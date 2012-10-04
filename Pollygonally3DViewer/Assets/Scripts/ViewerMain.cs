@@ -43,11 +43,13 @@ public class ViewerMain : MonoBehaviour {
 		
 		if(xml.text == "") yield break;
 		
+		string mainElementsTagName;
 		string xmlText = xml.text;
+		
 		
 		XmlDocument xmlDocument = new XmlDocument();
 		xmlDocument.LoadXml(xmlText);
-		XmlNodeList nodes = xmlDocument.GetElementsByTagName("platform");
+		XmlNodeList nodes = xmlDocument.GetElementsByTagName(SettingsManager.resourceType);
 		
 		foreach(XmlNode node in nodes) {
 			XmlNode firstChild = node.FirstChild;

@@ -5,6 +5,9 @@ public class SettingsManager : MonoBehaviour {
 	public const string apiKeySection = "?api_key=d67c460606bc9f8207f30f6e16ac11ac0b2636d3";
 	public static string callURL = "";
 	public static string resourceType = "";
+	
+	
+	
 	void Awake() {
 		DontDestroyOnLoad(gameObject);
 	}
@@ -16,13 +19,10 @@ public class SettingsManager : MonoBehaviour {
 			callURL = "http://api.giantbomb.com/search/" + apiKeySection + "&field_list=name,image&query=pikmin";
 		} else {
 			SettingsManager.resourceType = resourceType.ToLower();
-			switch(resourceType) {
-			case "game":
-				callURL = "http://api.giantbomb.com/search/" + apiKeySection + "&format=xml&field_list=name,image&query=" + searchInput + "&resources=" + resourceType;	
-				break;
-			case "platforms":
+			if(resourceType == "platforms") {
 				callURL = "http://api.giantbomb.com/platforms/" + apiKeySection + "&format=xml&field_list=name,image";
-				break;
+			} else {
+				callURL = "http://api.giantbomb.com/search/" + apiKeySection + "&format=xml&field_list=name,image&query=" + searchInput + "&resources=" + resourceType;		
 			}
 		}
 		
