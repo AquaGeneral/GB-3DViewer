@@ -8,7 +8,7 @@ public class SelectionScene : MonoBehaviour {
 	string searchInput = "";
 	
 	string[] resourceTypes = new string[] {
-		"character", "compant", "concept", 
+		"character", "company", "concept", 
 		"franchise", "game", "location", "object",
 		"person", "video", "platform"};
 			

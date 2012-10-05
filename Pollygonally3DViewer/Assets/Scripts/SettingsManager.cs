@@ -19,7 +19,7 @@ public class SettingsManager : MonoBehaviour {
 			callURL = "http://api.giantbomb.com/search/" + apiKeySection + "&field_list=name,image&query=pikmin";
 		} else {
 			SettingsManager.resourceType = resourceType.ToLower();
-			if(resourceType == "platforms") {
+			if(resourceType == "platform") {
 				callURL = "http://api.giantbomb.com/platforms/" + apiKeySection + "&format=xml&field_list=name,image";
 			} else {
 				callURL = "http://api.giantbomb.com/search/" + apiKeySection + "&format=xml&field_list=name,image&query=" + searchInput + "&resources=" + resourceType;		

@@ -68,12 +68,20 @@ public class ViewerMain : MonoBehaviour {
 			if(imageURL == "") continue;
 			if(imageURL.Contains(".gif")) continue;
 			
+			if(SettingsManager.resourceType == "platform") {
+				Debug.Log(node.ChildNodes[0].InnerText);
+			}
+			
 			Debug.Log("Downloading image: " + node.ChildNodes[1].InnerText);
-			Debug.Log (imageURL);
+			Debug.Log(imageURL);
 			
 			// Instantiate the gameBox now since it will prevent the blocking of any image download requests
 			GameObject gameBox = (GameObject) Instantiate(gameCardBase, Vector3.zero, Quaternion.identity);
 			gameBox.active = false;
+			
+			BoxLogic boxLogic = gameBox.GetComponent<BoxLogic>(); 
+			boxLogic.SetText(node.ChildNodes[1].InnerText);
+			
 			gameCardBoxes.Add(gameBox);
 			imageUrlList.Add(imageURL);
 		}
@@ -85,23 +93,22 @@ public class ViewerMain : MonoBehaviour {
 		WWW web = new WWW(imageURL);
 		downloaders.Add(web);
 		
-		GameObject gameBox = gameCardBoxes[i];
+		GameObject gameBoxParent = gameCardBoxes[i];
 		
 		yield return web;
 		
 		Texture2D imageTexture = web.texture;
 		
-		gameBox.transform.localScale = new Vector3(imageTexture.width * 1f / imageTexture.height, 0.1f, 1f);
-		gameBox.transform.localScale *= 0.5f;
+		BoxLogic boxLogic = gameBoxParent.GetComponent<BoxLogic>();
 		
-		if(gameBox.transform.localScale.x > 0.5f) {
-			gameBox.transform.localScale *= 0.5f / gameBox.transform.localScale.x; 	
-		}
+		boxLogic.box.transform.localScale = new Vector3(imageTexture.width * 1f / imageTexture.height, 0.1f, 1f);
 		
-		gameBox.renderer.material.mainTexture = new Texture2D(imageTexture.width, 
+		boxLogic.box.renderer.material.mainTexture = new Texture2D(imageTexture.width, 
 			imageTexture.height, TextureFormat.DXT1, false);
 		
-		web.LoadImageIntoTexture((Texture2D) gameBox.renderer.material.mainTexture);
+		web.LoadImageIntoTexture((Texture2D) boxLogic.box.renderer.material.mainTexture);
+		
+		boxLogic.ShowText();
 		
 		Destroy(imageTexture);
 	}
@@ -115,7 +122,7 @@ public class ViewerMain : MonoBehaviour {
 		//float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * 6f;
 		//float mouseY = -Input.GetAxis("Mouse Y") * Time.deltaTime * 6f;
 		
-		float xAxis = Input.GetAxis ("Horizontal") * Time.deltaTime * 1.8f;
+		float xAxis = Input.GetAxis("Horizontal") * Time.deltaTime * 1.8f;
 		float yAxis = Input.GetAxis("UpDown") * Time.deltaTime * 1.5f;
 		float zAxis = Input.GetAxis("Vertical") * Time.deltaTime * 1.7f;
 		
@@ -127,7 +134,7 @@ public class ViewerMain : MonoBehaviour {
 		if(gameCount < gameCardBoxes.Count) {
 			if(gameCount < Mathf.Floor((transform.position.x * 1.2f + 2.2f))) {
 				gameCardBoxes[gameCount].transform.position = new Vector3(gameCount * 0.8333333333333333f + UnityEngine.Random.Range(-0.02f, 0.02f), 1f, 0f);
-				gameCardBoxes[gameCount].active = true;	
+				gameCardBoxes[gameCount].SetActiveRecursively(true);
 				gameCount++;
 			}
 		}
