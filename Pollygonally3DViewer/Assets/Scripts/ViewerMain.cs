@@ -16,6 +16,11 @@ public class ViewerMain : MonoBehaviour {
 	//private bool freeCamera = false;
 	private bool finishedDownloading = false;
 	
+	private bool showLog = false;
+	private string logText;
+	
+	private BoxLogic lastHitBoxLogic;
+	
 	int gameCount = 0;
 	IEnumerator Start() {
 		if(SettingsManager.callURL == "") {
@@ -46,9 +51,23 @@ public class ViewerMain : MonoBehaviour {
 		string mainElementsTagName;
 		string xmlText = xml.text;
 		
-		
 		XmlDocument xmlDocument = new XmlDocument();
 		xmlDocument.LoadXml(xmlText);
+		
+		XmlNode errorNode = xmlDocument.GetElementsByTagName("error")[0];
+		if(errorNode.InnerText != "OK") {
+			ShowError(errorNode.InnerText, "Retrieve Error");
+			StopAllCoroutines();
+			yield break;
+		}
+		
+		XmlNode resultCount = xmlDocument.GetElementsByTagName("number_of_total_results")[0];
+		if(resultCount.InnerText == "0") {
+			ShowError("No results founds", "Search Error");
+			StopAllCoroutines();
+			yield break;
+		}
+		
 		XmlNodeList nodes = xmlDocument.GetElementsByTagName(SettingsManager.resourceType);
 		
 		foreach(XmlNode node in nodes) {
@@ -77,10 +96,10 @@ public class ViewerMain : MonoBehaviour {
 			
 			// Instantiate the gameBox now since it will prevent the blocking of any image download requests
 			GameObject gameBox = (GameObject) Instantiate(gameCardBase, Vector3.zero, Quaternion.identity);
-			gameBox.active = false;
 			
 			BoxLogic boxLogic = gameBox.GetComponent<BoxLogic>(); 
 			boxLogic.SetText(node.ChildNodes[1].InnerText);
+			boxLogic.HideText();
 			
 			gameCardBoxes.Add(gameBox);
 			imageUrlList.Add(imageURL);
@@ -108,8 +127,6 @@ public class ViewerMain : MonoBehaviour {
 		
 		web.LoadImageIntoTexture((Texture2D) boxLogic.box.renderer.material.mainTexture);
 		
-		boxLogic.ShowText();
-		
 		Destroy(imageTexture);
 	}
 	
@@ -122,9 +139,9 @@ public class ViewerMain : MonoBehaviour {
 		//float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * 6f;
 		//float mouseY = -Input.GetAxis("Mouse Y") * Time.deltaTime * 6f;
 		
-		float xAxis = Input.GetAxis("Horizontal") * Time.deltaTime * 1.8f;
-		float yAxis = Input.GetAxis("UpDown") * Time.deltaTime * 1.5f;
-		float zAxis = Input.GetAxis("Vertical") * Time.deltaTime * 1.7f;
+		float xAxis = Input.GetAxis("Horizontal") * Time.deltaTime * 1.4f;
+		float yAxis = Input.GetAxis("UpDown") * Time.deltaTime * 1.3f;
+		float zAxis = Input.GetAxis("Vertical") * Time.deltaTime * 1.35f;
 		
 		//transform.Rotate(new Vector3(mouseY * 2f, mouseX * 2f, 0f));
 		transform.position = new Vector3(Mathf.Clamp(transform.position.x + xAxis, 0f, 120f), 
@@ -132,11 +149,25 @@ public class ViewerMain : MonoBehaviour {
 			Mathf.Clamp(transform.position.z + zAxis, -0.5f, 0.5f));
 		
 		if(gameCount < gameCardBoxes.Count) {
-			if(gameCount < Mathf.Floor((transform.position.x * 1.2f + 2.2f))) {
-				gameCardBoxes[gameCount].transform.position = new Vector3(gameCount * 0.8333333333333333f + UnityEngine.Random.Range(-0.02f, 0.02f), 1f, 0f);
+			if(gameCount < Mathf.Floor((transform.position.x * 2f + 2.2f))) {
+				gameCardBoxes[gameCount].transform.position = new Vector3(gameCount * 0.5f + UnityEngine.Random.Range(-0.02f, 0.02f), 1f, 0f);
 				gameCardBoxes[gameCount].SetActiveRecursively(true);
+				BoxLogic boxLogic = gameCardBoxes[gameCount].GetComponent<BoxLogic>();
+				boxLogic.HideText();
 				gameCount++;
 			}
+		}
+		
+		RaycastHit rayHit;
+		Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+		
+		if(Physics.Raycast(ray, out rayHit, 10f, 1 << 8)) {
+			lastHitBoxLogic = rayHit.transform.GetComponent<BoxLogic>();
+			lastHitBoxLogic.ShowText();
+		} else {
+			if(lastHitBoxLogic == null) return;
+			lastHitBoxLogic.HideText();
+			lastHitBoxLogic = null;
 		}
 	}
 	
@@ -145,21 +176,26 @@ public class ViewerMain : MonoBehaviour {
 			GUI.Box(new Rect(5f, 5f, 200f, 27f), "Download Progress " + GetProgress().ToString("0.00%"));
 		}
 		
-		/*
-		if(freeCamera) {
-			if(GUI.Button(new Rect(Screen.width - 345f, 5f, 165f, 50f), "Guided Camera")) {
-				freeCamera = false;	
-			}
-		} else {
-			if(GUI.Button(new Rect(Screen.width - 345f, 5f, 165f, 50f), "Free Camera")) {
-				freeCamera = true;	
-			}
-		}
-		*/
-		
 		if(GUI.Button(new Rect(Screen.width - 110f, 5f, 105, 40f), "Back")) {
 			Application.LoadLevel(0);
 		}
+		
+		if(showLog) {
+			GUI.Box(new Rect(1f, Screen.height * 0.4f, Screen.width - 4f, Screen.height * 0.6f), logText);
+			if(GUI.Button(new Rect(Screen.width - 105f, Screen.height * 0.4f - 40f, 100f, 40f), "Hide")) {
+				showLog = false;
+			}
+		} 
+		else if(string.IsNullOrEmpty(logText) == false) {
+			if(GUI.Button(new Rect(Screen.width - 105, Screen.height - 45, 100, 40), "Log")) {
+				showLog = true;
+			}
+		}
+	}
+	
+	void ShowError(string errorText, string errorType) {
+		showLog = true;
+		logText += errorType + ": " + errorText + Environment.NewLine;
 	}
 	
 	// Retruns a value from 0.0 to 1.0 based on the total progress on all image downloads

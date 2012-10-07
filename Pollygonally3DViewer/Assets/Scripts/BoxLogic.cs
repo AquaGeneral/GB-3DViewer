@@ -9,13 +9,16 @@ public class BoxLogic : MonoBehaviour {
 	
 	public GameObject box;
 	
+	void Awake() {
+		gameObject.SetActiveRecursively(false);
+	}
+	
 	public void ShowText() {
 		textMeshObject.active = true;
 	}
 	
 	public void SetText(string text) {
 		textMesh.text = text;
-		textMeshObject.active = true;
 	}
 	
 	public void HideText() {

@@ -2,11 +2,11 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ViewerMain.cs">
     <Files>
-      <File FileName="Assets/Scripts/SettingsManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/SelectionScene.cs" Line="32" Column="48" />
-      <File FileName="Assets/Scripts/ViewerMain.cs" Line="83" Column="51" />
+      <File FileName="Assets/Scripts/SettingsManager.cs" Line="28" Column="3" />
+      <File FileName="Assets/Scripts/SelectionScene.cs" Line="23" Column="70" />
+      <File FileName="Assets/Scripts/ViewerMain.cs" Line="144" Column="66" />
       <File FileName="Assets/Scripts/InGamePopup.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/BoxLogic.cs" Line="17" Column="24" />
+      <File FileName="Assets/Scripts/BoxLogic.cs" Line="16" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

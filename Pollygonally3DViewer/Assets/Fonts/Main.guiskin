@@ -1237,7 +1237,7 @@ MonoBehaviour:
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
-    m_Font: {fileID: 12800000, guid: 300ec73b49feb4bd4a58ffee61e3656c, type: 1}
+    m_Font: {fileID: 12800000, guid: 45987c6dd92854b4080d4a80c86ecea0, type: 1}
     m_ImagePosition: 0
     m_Alignment: 4
     m_WordWrap: 1

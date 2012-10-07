@@ -98,7 +98,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 62251900}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
-  m_LocalPosition: {x: 0, y: .100000001, z: 1}
+  m_LocalPosition: {x: 0, y: .100000001, z: .800000012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 843661792}
@@ -114,7 +114,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: f82a79f15e6d44656a5de6039adae207, type: 1}
+  - {fileID: 2100000, guid: 45987c6dd92854b4080d4a80c86ecea0, type: 1}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -134,9 +134,9 @@ TextMesh:
   m_Anchor: 4
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 0
+  m_FontSize: 80
   m_FontStyle: 0
-  m_Font: {fileID: 12800000, guid: f82a79f15e6d44656a5de6039adae207, type: 1}
+  m_Font: {fileID: 12800000, guid: 45987c6dd92854b4080d4a80c86ecea0, type: 1}
 --- !u!1 &786428691
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +230,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 787767016}
   m_LocalRotation: {x: .707106888, y: 0, z: 0, w: .707106769}
-  m_LocalPosition: {x: 0, y: .699999988, z: .0299999993}
+  m_LocalPosition: {x: 0, y: .449999988, z: .0500000007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -307,8 +307,8 @@ GameObject:
   - 54: {fileID: 843661793}
   - 65: {fileID: 843661794}
   - 114: {fileID: 843661795}
-  m_Layer: 0
-  m_Name: GameObject
+  m_Layer: 8
+  m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

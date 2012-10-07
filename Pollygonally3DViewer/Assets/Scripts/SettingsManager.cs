@@ -6,8 +6,6 @@ public class SettingsManager : MonoBehaviour {
 	public static string callURL = "";
 	public static string resourceType = "";
 	
-	
-	
 	void Awake() {
 		DontDestroyOnLoad(gameObject);
 	}
@@ -28,8 +26,6 @@ public class SettingsManager : MonoBehaviour {
 		
 		callURL = callURL.Replace(" ", "%20");
 		
-		
-
 		Debug.Log ("CallURL set: " + callURL);
 		
 		// Load the level up which displays the games
