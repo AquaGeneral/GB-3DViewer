@@ -23,8 +23,10 @@ public class ViewerMain : MonoBehaviour {
 	
 	int gameCount = 0;
 	IEnumerator Start() {
+		if(SettingsManager.CheckAPIKey() == false) yield break;
+		
 		if(SettingsManager.callURL == "") {
-			SettingsManager.callURL = "http://api.giantbomb.com/search/?api_key=d67c460606bc9f8207f30f6e16ac11ac0b2636d3" + 
+			SettingsManager.callURL = "http://api.giantbomb.com/search/?api_key=" + SettingsManager.apiKey + 
 				"&format=xml&field_list=name,image&resources=game&query=Pikmin";
 			SettingsManager.resourceType = "game";
 		}

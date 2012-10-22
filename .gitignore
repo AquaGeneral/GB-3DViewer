@@ -159,10 +159,13 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
-# Mac crap
+# Mac
 .DS_Store
 
-#Unity crap
+#Unity
 tmp
 build/
 Library/
+Temp
+*.pidb
+*.sln

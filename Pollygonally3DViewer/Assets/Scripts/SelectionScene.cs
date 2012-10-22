@@ -15,6 +15,8 @@ public class SelectionScene : MonoBehaviour {
 	InGamePopup resourceTypePopup;
 	
 	void Start() {
+		SettingsManager.CheckAPIKey();
+		
 		resourceTypePopup = new InGamePopup(new Rect(120, 270, 250, 30), 30f, resourceTypes);	
 	}
 	

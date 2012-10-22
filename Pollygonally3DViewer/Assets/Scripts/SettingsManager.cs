@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class SettingsManager : MonoBehaviour {
-	public const string apiKeySection = "?api_key=d67c460606bc9f8207f30f6e16ac11ac0b2636d3";
+	public const string apiKey = "";
 	public static string callURL = "";
 	public static string resourceType = "";
 	
@@ -14,13 +14,13 @@ public class SettingsManager : MonoBehaviour {
 		searchInput = searchInput.Trim();
 		
 		if(string.IsNullOrEmpty(searchInput)) {
-			callURL = "http://api.giantbomb.com/search/" + apiKeySection + "&field_list=name,image&query=pikmin";
+			callURL = "http://api.giantbomb.com/search/?api_key=" + apiKey + "&field_list=name,image&query=pikmin";
 		} else {
 			SettingsManager.resourceType = resourceType.ToLower();
 			if(resourceType == "platform") {
-				callURL = "http://api.giantbomb.com/platforms/" + apiKeySection + "&format=xml&field_list=name,image";
+				callURL = "http://api.giantbomb.com/platforms/?api_key=" + apiKey + "&format=xml&field_list=name,image";
 			} else {
-				callURL = "http://api.giantbomb.com/search/" + apiKeySection + "&format=xml&field_list=name,image&query=" + searchInput + "&resources=" + resourceType;		
+				callURL = "http://api.giantbomb.com/search/?api_key=" + apiKey + "&format=xml&field_list=name,image&query=" + searchInput + "&resources=" + resourceType;		
 			}
 		}
 		
@@ -30,5 +30,14 @@ public class SettingsManager : MonoBehaviour {
 		
 		// Load the level up which displays the games
 		Application.LoadLevel(1);
+	}
+	
+	// Check if a API key was entered, and is not null
+	public static bool CheckAPIKey() {
+		if(string.IsNullOrEmpty(SettingsManager.apiKey)) {
+			Debug.LogError("Please enter your API Key in SettingsManager.apiKey\nGo on http://api.giantbomb.com/ for more information");
+			return false;
+		}			
+		return true;
 	}
 }
