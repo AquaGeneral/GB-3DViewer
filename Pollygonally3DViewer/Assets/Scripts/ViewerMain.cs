@@ -8,7 +8,7 @@ public class ViewerMain : MonoBehaviour {
 	public GameObject gameCardBase;
 	public Transform mainCamera;
 	
-	public List<GameObject> gameCardBoxes = new List<GameObject>();
+	private List<GameObject> gameCardBoxes = new List<GameObject>();
 	
 	private List<string> imageUrlList = new List<string>();
 	private List<WWW> downloaders = new List<WWW>();
@@ -25,7 +25,7 @@ public class ViewerMain : MonoBehaviour {
 	IEnumerator Start() {
 		if(SettingsManager.CheckAPIKey() == false) yield break;
 		
-		if(SettingsManager.callURL == "") {
+		if(string.IsNullOrEmpty(SettingsManager.callURL)) {
 			SettingsManager.callURL = "http://api.giantbomb.com/search/?api_key=" + SettingsManager.apiKey + 
 				"&format=xml&field_list=name,image&resources=game&query=Pikmin";
 			SettingsManager.resourceType = "game";
@@ -50,7 +50,6 @@ public class ViewerMain : MonoBehaviour {
 		
 		if(xml.text == "") yield break;
 		
-		string mainElementsTagName;
 		string xmlText = xml.text;
 		
 		XmlDocument xmlDocument = new XmlDocument();
@@ -138,22 +137,19 @@ public class ViewerMain : MonoBehaviour {
 			return;
 		}
 		
-		//float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * 6f;
-		//float mouseY = -Input.GetAxis("Mouse Y") * Time.deltaTime * 6f;
-		
 		float xAxis = Input.GetAxis("Horizontal") * Time.deltaTime * 1.4f;
 		float yAxis = Input.GetAxis("UpDown") * Time.deltaTime * 1.3f;
 		float zAxis = Input.GetAxis("Vertical") * Time.deltaTime * 1.35f;
 		
-		//transform.Rotate(new Vector3(mouseY * 2f, mouseX * 2f, 0f));
 		transform.position = new Vector3(Mathf.Clamp(transform.position.x + xAxis, 0f, 120f), 
 			Mathf.Clamp(transform.position.y + yAxis, 0.15f, 3f), 
 			Mathf.Clamp(transform.position.z + zAxis, -0.5f, 0.5f));
 		
 		if(gameCount < gameCardBoxes.Count) {
+			Debug.Log (gameCount + " " + Mathf.Floor((transform.position.x * 2f + 2.2f)));
 			if(gameCount < Mathf.Floor((transform.position.x * 2f + 2.2f))) {
 				gameCardBoxes[gameCount].transform.position = new Vector3(gameCount * 0.5f + UnityEngine.Random.Range(-0.02f, 0.02f), 1f, 0f);
-				gameCardBoxes[gameCount].SetActiveRecursively(true);
+				gameCardBoxes[gameCount].SetActive(true);
 				BoxLogic boxLogic = gameCardBoxes[gameCount].GetComponent<BoxLogic>();
 				boxLogic.HideText();
 				gameCount++;

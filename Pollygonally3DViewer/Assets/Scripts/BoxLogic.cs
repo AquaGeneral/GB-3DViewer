@@ -9,12 +9,8 @@ public class BoxLogic : MonoBehaviour {
 	
 	public GameObject box;
 	
-	void Awake() {
-		gameObject.SetActiveRecursively(false);
-	}
-	
 	public void ShowText() {
-		textMeshObject.active = true;
+		textMeshObject.SetActive(true);
 	}
 	
 	public void SetText(string text) {
@@ -22,6 +18,6 @@ public class BoxLogic : MonoBehaviour {
 	}
 	
 	public void HideText() {
-		textMesh.active = false;
+		textMeshObject.SetActive(false);
 	}
 }
