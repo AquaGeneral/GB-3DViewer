@@ -1,7 +1,7 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!29 &1
-Scene:
+SceneSettings:
   m_ObjectHideFlags: 0
   m_PVSData: 
   m_QueryMode: 1
@@ -79,7 +79,7 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 3
+  serializedVersion: 4
   m_Component:
   - 4: {fileID: 1758682472}
   - 20: {fileID: 1758682473}
@@ -162,22 +162,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1758682471}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25b272b50e7675646aa55ddc32d36db6, type: 1}
+  m_Script: {fileID: 11500000, guid: b641e21cc5d799f4aac59a7849a80c25, type: 3}
   m_Name: 
-  giantBombLogo: {fileID: 2800000, guid: 8993abc5e85a4c2488243f63ea0d493f, type: 1}
-  whiskeyAPILogo: {fileID: 2800000, guid: 5b3712c47d92a334d8c846f692345d01, type: 1}
-  guiSkin: {fileID: 11400000, guid: 8458e25f9298edd41807e78d72cd462b, type: 2}
+  giantBombLogo: {fileID: 2800000, guid: 2f3819afef19d5c4f8086846c7b2f9b6, type: 3}
+  whiskeyAPILogo: {fileID: 2800000, guid: 85662aac204460143b45879f379a0cd3, type: 3}
+  guiSkin: {fileID: 11400000, guid: 32e1572b1e965184c951a529ced915d6, type: 2}
 --- !u!1 &1957723570
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 3
+  serializedVersion: 4
   m_Component:
   - 4: {fileID: 1957723571}
   - 114: {fileID: 1957723572}
   m_Layer: 0
-  m_Name: SettingsKeeper
+  m_Name: SettingsManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -202,5 +202,5 @@ MonoBehaviour:
   m_GameObject: {fileID: 1957723570}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6dce287e2ec10d45b61a5f298de0c4d, type: 1}
+  m_Script: {fileID: 11500000, guid: 9059225d2bf35504095836e3584a3427, type: 3}
   m_Name: 

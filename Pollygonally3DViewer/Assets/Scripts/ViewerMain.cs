@@ -146,7 +146,6 @@ public class ViewerMain : MonoBehaviour {
 			Mathf.Clamp(transform.position.z + zAxis, -0.5f, 0.5f));
 		
 		if(gameCount < gameCardBoxes.Count) {
-			Debug.Log (gameCount + " " + Mathf.Floor((transform.position.x * 2f + 2.2f)));
 			if(gameCount < Mathf.Floor((transform.position.x * 2f + 2.2f))) {
 				gameCardBoxes[gameCount].transform.position = new Vector3(gameCount * 0.5f + UnityEngine.Random.Range(-0.02f, 0.02f), 1f, 0f);
 				gameCardBoxes[gameCount].SetActive(true);
@@ -208,7 +207,7 @@ public class ViewerMain : MonoBehaviour {
 		
 		float completionCoefficient = (total / downloaders.Count);
 		
-		if(completionCoefficient == 1f) {
+		if(completionCoefficient == 1f) {			
 			finishedDownloading = true;
 			downloaders = null;
 		}

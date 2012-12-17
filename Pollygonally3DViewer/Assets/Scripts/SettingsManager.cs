@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class SettingsManager : MonoBehaviour {
-	public const string apiKey = "";
+	public const string apiKey = ""; // Enter your API key here
 	public static string callURL = "";
 	public static string resourceType = "";
 	
