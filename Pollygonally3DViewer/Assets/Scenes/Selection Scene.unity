@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   giantBombLogo: {fileID: 2800000, guid: 2f3819afef19d5c4f8086846c7b2f9b6, type: 3}
   whiskeyAPILogo: {fileID: 2800000, guid: 85662aac204460143b45879f379a0cd3, type: 3}
-  guiSkin: {fileID: 11400000, guid: 32e1572b1e965184c951a529ced915d6, type: 2}
+  guiSkin: {fileID: 11400000, guid: 5d0ba7f08180841ed982dcedcbac4dd9, type: 2}
 --- !u!1 &1957723570
 GameObject:
   m_ObjectHideFlags: 0
