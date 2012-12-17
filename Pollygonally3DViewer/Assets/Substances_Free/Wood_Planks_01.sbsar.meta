@@ -165,6 +165,6 @@ SubstanceImporter:
       textureWidth: 2048
       textureHeight: 2048
       textureFormat: 0
-      loadingBehavior: 1
+      loadingBehavior: 2
   deletedPrototypes: []
   userData: 

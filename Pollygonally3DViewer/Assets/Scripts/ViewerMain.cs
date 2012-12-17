@@ -121,7 +121,7 @@ public class ViewerMain : MonoBehaviour {
 		
 		BoxLogic boxLogic = gameBoxParent.GetComponent<BoxLogic>();
 		
-		boxLogic.box.transform.localScale = new Vector3(imageTexture.width * 1f / imageTexture.height, 0.1f, 1f);
+		boxLogic.box.transform.localScale = new Vector3(imageTexture.width * 0.4f / imageTexture.height, 0.035f, 0.4f);
 		
 		boxLogic.box.renderer.material.mainTexture = new Texture2D(imageTexture.width, 
 			imageTexture.height, TextureFormat.DXT1, false);
@@ -142,7 +142,7 @@ public class ViewerMain : MonoBehaviour {
 		float zAxis = Input.GetAxis("Vertical") * Time.deltaTime * 1.35f;
 		
 		transform.position = new Vector3(Mathf.Clamp(transform.position.x + xAxis, 0f, 120f), 
-			Mathf.Clamp(transform.position.y + yAxis, 0.15f, 3f), 
+			Mathf.Clamp(transform.position.y + yAxis, 0.5f, 3f), 
 			Mathf.Clamp(transform.position.z + zAxis, -0.5f, 0.5f));
 		
 		if(gameCount < gameCardBoxes.Count) {
