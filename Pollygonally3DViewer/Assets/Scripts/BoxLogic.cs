@@ -2,8 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class BoxLogic : MonoBehaviour {
-	[SerializeField]
-	private GameObject textMeshObject;
+	public GameObject textMeshObject;
 	[SerializeField]
 	private TextMesh textMesh;
 	

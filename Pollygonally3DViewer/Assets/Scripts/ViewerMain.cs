@@ -122,6 +122,7 @@ public class ViewerMain : MonoBehaviour {
 		BoxLogic boxLogic = gameBoxParent.GetComponent<BoxLogic>();
 		
 		boxLogic.box.transform.localScale = new Vector3(imageTexture.width * 0.4f / imageTexture.height, 0.035f, 0.4f);
+		boxLogic.textMeshObject.transform.localScale = new Vector3(1f * imageTexture.height / imageTexture.width, 1f, 0.4f);
 		
 		boxLogic.box.renderer.material.mainTexture = new Texture2D(imageTexture.width, 
 			imageTexture.height, TextureFormat.DXT1, false);
